@@ -6,12 +6,16 @@ const Navbar = () => {
   const { theme, setTheme } = useContextGlobal(); 
 
   const handleToggleTheme = () =>{
-    console.log("Clicked!")
-    console.log(theme)
-    if(theme.theme ==="Light")
+    if(theme.theme ==="Light"){
       setTheme({theme: "Dark"})
-    else
+      //update localStorage
+      localStorage.setItem("theme",JSON.stringify({theme: "Dark"}))
+    }else{
       setTheme({theme: "Light"}) 
+      //update localStorage
+      localStorage.setItem("theme",JSON.stringify({theme: "Light"}))
+    }
+
   }
 
   return (

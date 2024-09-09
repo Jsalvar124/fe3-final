@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Card from '../Components/Card'
 import axios from 'axios'
-import { Link } from 'react-router-dom';
+
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -30,9 +30,7 @@ const Home = () => {
         {
           dentistas.map(dentista=>{
             return(
-              <Link key={dentista.id} to={`/dentista/${dentista.id}`}>
-                <Card dentista={dentista}/>
-              </Link>
+                <Card key={dentista.id} dentista={dentista}/>
             )
           })
         }
