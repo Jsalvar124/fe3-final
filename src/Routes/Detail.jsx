@@ -9,13 +9,13 @@ const Detail = () => {
 
   const [dentista, setDentista] = useState({})
   const params = useParams();
-  console.log(params.id)
+  // console.log(params.id)
   const DETAIL_URL = `https://jsonplaceholder.typicode.com/users/${params.id}`
-  console.log(DETAIL_URL)
+  // console.log(DETAIL_URL)
   const fetchData = async () => {
     try {
       const response = await axios.get(DETAIL_URL)
-      console.log(response.data)
+      // console.log(response.data)
       setDentista(response.data)
     } catch (error) {
       console.error('Error fetching data:', error); // Handle errors
