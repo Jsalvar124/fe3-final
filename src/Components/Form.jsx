@@ -21,8 +21,10 @@ const Form = () => {
         ...prevErrors,
         email: 'Email is not valid',
       }));
+      return false;
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, email: '' }));
+      return true;
     }
   }
 
@@ -32,8 +34,10 @@ const Form = () => {
         ...prevErrors,
         name: 'Name needs to be at least 3 characters long',
       }));
+      return false;
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, name: '' }));
+      return true;
     }
   }
 
@@ -43,8 +47,10 @@ const Form = () => {
         ...prevErrors,
         question: 'Please enter a question',
       }));
+      return false;
     } else {
       setErrors((prevErrors) => ({ ...prevErrors, question: '' }));
+      return true;
     }
   }
 
@@ -57,11 +63,11 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateName();
-    validateEmail();
-    validateQuestion();
+    const isValidName = validateName();
+    const isValidEmail = validateEmail();
+    const isValidQuestion = validateQuestion();
 
-    if (!errors.name && !errors.email && !errors.question) {
+    if (isValidName && isValidEmail && isValidQuestion) {
       // Proceed with form submission if no errors
       console.log('Form submitted successfully!', formData);
       alert("Form submitted successfully!")

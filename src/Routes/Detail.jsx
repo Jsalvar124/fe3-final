@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useContextGlobal } from '../Components/utils/global.context'
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Detail = () => {
 
+  const {theme} = useContextGlobal();
   const [dentista, setDentista] = useState({})
   const params = useParams();
   // console.log(params.id)
@@ -29,8 +31,8 @@ const Detail = () => {
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
 
   return (
-    <>
-      <h1>Detail Dentist id </h1>
+    <main className={`detail ${theme === 'Dark' ? 'dark' : 'light'}`}>
+      <h1>Detail Dentist {dentista.id}</h1>
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico  */}
       {
         dentista &&
@@ -43,7 +45,7 @@ const Detail = () => {
       }
 
       {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
-    </>
+    </main>
   )
 }
 

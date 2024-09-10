@@ -6,20 +6,12 @@ const Navbar = () => {
   const { theme, setTheme } = useContextGlobal(); 
 
   const handleToggleTheme = () =>{
-    if(theme.theme ==="Light"){
-      setTheme({theme: "Dark"})
-      //update localStorage
-      localStorage.setItem("theme",JSON.stringify({theme: "Dark"}))
-    }else{
-      setTheme({theme: "Light"}) 
-      //update localStorage
-      localStorage.setItem("theme",JSON.stringify({theme: "Light"}))
-    }
-
+    const newTheme = theme==="Light"?"Dark":"Light";
+    setTheme(newTheme)
   }
 
   return (
-    <nav>
+    <nav className={`navbar ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
       <button onClick={handleToggleTheme}>Change theme</button>

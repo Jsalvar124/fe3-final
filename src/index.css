@@ -12,30 +12,35 @@ code {
     monospace;
 }
 .favButton{
-  background-color: rgba(136, 136, 136, 0.116);
+  background-color: rgba(226, 226, 226, 0.116);
   padding: 10px;
   border: none;
   width: 100%;
   cursor: pointer;
 }
 
-h1{
+h1, h3 {
   text-align: center;
+  margin: 0;
 }
 
 nav{
   display: flex;
-  width: 80vw;
+  width: 100%;
   justify-content: flex-start;
-  padding: 1rem;
+  padding: 2rem;
 }
+
 
 a{
   color: #000;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
+  font-size: 20px;
+  font-weight:600;
 }
+
 a:hover{
   color: rgb(136, 136, 136);
 } 
@@ -49,7 +54,6 @@ footer {
   bottom: 0;
   width: 100%;
   height: 40px;
-  margin-top: 2rem;
 }
 
 footer > img{
@@ -91,6 +95,7 @@ form{
   height: auto;
   flex-wrap: wrap;
   margin: 0 auto;
+  padding: 2rem;
 }
 
 table {
@@ -113,9 +118,51 @@ tr:nth-child(even) {
 }
 
 .dark{
-  background-color: #12121296;
-  color: white;
+  background-color: #000000d8;
+  color:  #c5b9de;
+}
+
+.dark p{
+  color:  #c5b9de;
 }
 .dark > a {
-  color: white;
+  color: #c5b9de;
 }
+
+.formBody h2, p {
+  text-align: center;
+}
+
+.formBody{
+  padding: 0 2rem 2rem 2rem;
+}
+
+.dark-theme {
+  background-color: #666666;
+  color: #f4f4f4;
+}
+
+.light-theme {
+  background-color: #f4f4f4;
+  color: #000;
+}
+
+/* Ensures all text within .dark-theme uses the correct color */
+.dark-theme h4, p, a {
+  color: #c5b9de;
+}
+
+.light-theme h4, p, a {
+  color: #000;
+}
+
+.detail{
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+main{
+  background-color: #ffffffc7;
+  min-height: 65vh;
+}
+

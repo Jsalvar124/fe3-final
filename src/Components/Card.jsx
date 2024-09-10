@@ -1,49 +1,37 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useContextGlobal } from './utils/global.context';
 
 const Card = ({ dentista }) => {
 
+  // handle internal state of the card.
   const [isFavorite, setIsFavorite] = useState(false);
+  // get favorites from context
+  const {favs, setFavs, theme} = useContextGlobal();
 
   useEffect(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-
-    if (!storedFavorites) {
-      // If no "favorites" key exists, initialize it with an empty array
-      localStorage.setItem("favorites", JSON.stringify([]));
-    } else {
-      // If "favorites" already exists, check if this dentist is a favorite
-      const favoritesArray = JSON.parse(storedFavorites);
-      if (favoritesArray.includes(dentista.id)) {
-        setIsFavorite(true);
+      const ids = favs.map(fav => fav.id)
+      if (ids.includes(dentista.id)){
+        setIsFavorite(true)
       }
-    }
-  }, [dentista.id]);
+  }, [dentista.id, favs]);
 
   const handleToggleFavorite = () => {
-
-    // Try to get stored favorites from local storage
-    const storedFavorites = localStorage.getItem("favorites");
     // if exists, parse it, if not, save an empty array.
-    let favoritesArray = storedFavorites ? JSON.parse(storedFavorites) : [];
-
     if (isFavorite) {
       // If the dentist is already a favorite, remove them, filter all that are not the current dentist id.
-      const updatedFavorites = favoritesArray.filter(favId => favId !== dentista.id);
-      // set the new array whit the removed id on local storage
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      // set the state of the component as Not favorite for conditional rendering of the heart.
+      const updatedFavs = favs.filter(fav => fav.id !== dentista.id);
+      setFavs(updatedFavs)
       setIsFavorite(false);
     } else {
       // If the dentist is not a favorite, add them
-      favoritesArray.push(dentista.id);
-      localStorage.setItem("favorites", JSON.stringify(favoritesArray));
+      setFavs([...favs, dentista])
       setIsFavorite(true);
     }
   };
 
   return (
-    <div className="card">
+    <div className={`card ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
       {/* En cada card deberan mostrar en name - username y el id */}
       <Link key={dentista.id} to={`/dentista/${dentista.id}`}>
         <h4>{dentista.name}</h4>
