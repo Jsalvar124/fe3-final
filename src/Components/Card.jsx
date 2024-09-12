@@ -34,9 +34,9 @@ const Card = ({ dentista }) => {
     <div className={`card ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
       {/* En cada card deberan mostrar en name - username y el id */}
       <Link key={dentista.id} to={`/dentista/${dentista.id}`}>
+        <img src="../../public/images/doctor.jpg" alt="doctor-image" />
         <h4>{dentista.name}</h4>
-        <h4>@{dentista.username}</h4>
-        <h4>id: {dentista.id} {isFavorite? "❤️" :""}</h4>
+        <h5>@{dentista.username} {isFavorite? "❤️" :""}</h5>
       </Link>
       {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
 
