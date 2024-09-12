@@ -7,31 +7,32 @@ const Card = ({ dentista }) => {
   // handle internal state of the card.
   const [isFavorite, setIsFavorite] = useState(false);
   // get favorites from context
-  const {favs, setFavs, theme} = useContextGlobal();
+  const {state, dispatch } = useContextGlobal();
 
   useEffect(() => {
-      const ids = favs.map(fav => fav.id)
+      const ids = state.favs.map(fav => fav.id)
       if (ids.includes(dentista.id)){
         setIsFavorite(true)
       }
-  }, [dentista.id, favs]);
+  }, [dentista.id, state.favs]);
 
   const handleToggleFavorite = () => {
-    // if exists, parse it, if not, save an empty array.
     if (isFavorite) {
       // If the dentist is already a favorite, remove them, filter all that are not the current dentist id.
-      const updatedFavs = favs.filter(fav => fav.id !== dentista.id);
-      setFavs(updatedFavs)
+      const updatedFavs = state.favs.filter(fav => fav.id !== dentista.id);
+      // setFavs(updatedFavs)
+      dispatch({type: "SET_FAVS", payload: updatedFavs})
       setIsFavorite(false);
     } else {
       // If the dentist is not a favorite, add them
-      setFavs([...favs, dentista])
+      // setFavs([...favs, dentista])
+      dispatch({type: "SET_FAVS", payload: [...state.favs, dentista]})
       setIsFavorite(true);
     }
   };
 
   return (
-    <div className={`card ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
+    <div className={`card ${state.theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
       {/* En cada card deberan mostrar en name - username y el id */}
       <Link key={dentista.id} to={`/dentista/${dentista.id}`}>
         <img src="./images/doctor.jpg" alt="doctor-image" />

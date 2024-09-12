@@ -4,9 +4,9 @@ import { useContextGlobal } from '../Components/utils/global.context';
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Contact = () => {
-  const {theme} = useContextGlobal();
+  const {state} = useContextGlobal();
   return (
-    <main className={`contact ${theme === 'Dark' ? 'dark' : 'light'}`}>
+    <main className={`contact ${state.theme === 'Dark' ? 'dark' : 'light'}`}>
     <div className="formBody">
       <h1>Want to know more?</h1>
       <p>Send us your questions and we will contact you</p>

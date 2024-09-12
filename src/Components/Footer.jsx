@@ -1,12 +1,12 @@
 import { useContextGlobal } from '../Components/utils/global.context'
 
 const Footer = () => {
-  const { theme } = useContextGlobal(); 
+  const { state } = useContextGlobal(); 
   return (
-    <footer className={`footer ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
+    <footer className={`footer ${state.theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
         <p>Powered by</p>
         <img src="./images/DH.png" alt='DH-logo' />
-        <p>Theme: {theme}</p>
+        <p>Theme: {state.theme === 'Dark' ? "🌙" : "🌞"}</p>
     </footer>
   )
 }

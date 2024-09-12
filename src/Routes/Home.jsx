@@ -5,14 +5,14 @@ import { useContextGlobal } from '../Components/utils/global.context'
 
 const Home = () => {
   // traer del contexto luego
-  const {theme, dentistas} = useContextGlobal();
+  const {state} = useContextGlobal();
   return (
-    <main className={`home ${theme === 'Dark' ? 'dark' : 'light'}`} >
+    <main className={`home ${state.theme === 'Dark' ? 'dark' : 'light'}`} >
       <h1>Welcome!</h1>
       <div className='card-grid'>
         {/* Aqui deberias renderizar las cards */}
         {
-          dentistas.map(dentista=>{
+          state.dentistas.map(dentista=>{
             return(
                 <Card key={dentista.id} dentista={dentista}/>
             )

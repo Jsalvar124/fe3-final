@@ -8,7 +8,7 @@ import { useContextGlobal } from '../Components/utils/global.context'
 
 const Detail = () => {
 
-  const {theme} = useContextGlobal();
+  const {state} = useContextGlobal();
   const [dentista, setDentista] = useState({})
   const params = useParams();
   // console.log(params.id)
@@ -31,7 +31,7 @@ const Detail = () => {
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
 
   return (
-    <main className={`detail ${theme === 'Dark' ? 'dark' : 'light'}`}>
+    <main className={`detail ${state.theme === 'Dark' ? 'dark' : 'light'}`}>
       <h1>Detail Dentist {dentista.id}</h1>
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico  */}
       {

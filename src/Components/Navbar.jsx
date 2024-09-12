@@ -3,15 +3,16 @@
 import { Link } from 'react-router-dom'
 import { useContextGlobal } from '../Components/utils/global.context'
 const Navbar = () => {
-  const { theme, setTheme } = useContextGlobal(); 
+  const { state, dispatch } = useContextGlobal(); 
 
   const handleToggleTheme = () =>{
-    const newTheme = theme==="Light"?"Dark":"Light";
-    setTheme(newTheme)
+    const newTheme = state.theme==="Light"?"Dark":"Light";
+    // setTheme(newTheme)
+    dispatch({type: "TOGGLE_THEME", payload: newTheme})
   }
 
   return (
-    <nav className={`navbar ${theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
+    <nav className={`navbar ${state.theme === 'Dark' ? 'dark-theme' : 'light-theme'}`}>
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
       <button onClick={handleToggleTheme}>Change theme</button>
